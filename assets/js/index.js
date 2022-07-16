@@ -39,3 +39,16 @@ function handlePhotoError({ target }) {
 function handlePhotoLoad({ target }) {
   target.classList.add('background-color');
 }
+
+function stringToColour(string) {
+  let hash = 0;
+  for (let i = 0; i < string.length; i++) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  let colour = "#";
+  for (let i = 0; i < 3; i++) {
+    const value = (hash >> (i * 8)) & 0xff;
+    colour += ("00" + value.toString(16)).slice(-2);
+  }
+  return colour;
+}
