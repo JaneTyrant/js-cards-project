@@ -1,0 +1,131 @@
+:root {
+    font-family: sans-serif;
+    font-size: 16px;
+
+    --accent-color: purple;
+    --secondary-color: #ffffff;
+    --background-color: #f2f2f2;
+    --photo-width: 110px;
+    --box-shadow-color: #5D5D5D;
+}
+
+.cards-section {
+    min-height: 100vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
+    text-align: center;
+
+    background-color: var(--secondary-color);
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--background-color) 25%, var(--accent-color) 25%);
+}
+
+.heading {
+    color: var(--accent-color);
+
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 2.5em;
+}
+
+.cards-container {
+    max-width: 90vw;
+    margin: auto;
+}
+
+.card-article {
+    display: inline-block;
+    width: calc(var(--photo-width) * 2);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin: 7px;
+
+    background-color: var(--secondary-color);
+
+    box-shadow: 0px 5px 10px 1px var(--box-shadow-color);
+}
+
+.card-article:hover {
+    cursor: pointer;
+}
+
+.photo-wrapper {
+    width: var(--photo-width);
+    height: var(--photo-width);
+    margin: auto;
+
+    position: relative;
+}
+
+.photo-wrapper > * {
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.initials-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: black;
+
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.color-secondary {
+    color: var(--secondary-color);
+}
+
+.card-photo {
+    padding: 2px;
+    border: 3px solid var(--accent-color);
+
+    object-fit: cover;
+    object-position: top;
+}
+
+.background-color {
+    background-color: var(--secondary-color);
+}
+
+.actors-name {
+    font-weight: bold;
+    text-transform: capitalize;
+
+    line-height: 2.5em;
+}
+
+.fa-stack {
+    margin-top: 1.5rem;
+}
+
+.fa-stack + .fa-stack {
+    margin-left: -5px;
+}
+
+.fa-circle {
+    color: var(--accent-color);
+
+    transition: color .5s .1s;
+}
+
+.fa-stack:hover .fa-circle{
+    color: rgba(128, 0, 128, 0.544);
+
+    transition: color .5s .1s;
+}
+
+@media (min-width: 920px) {
+    .cards-container {
+        max-width: calc(var(--photo-width) * 7);
+    }
+}
