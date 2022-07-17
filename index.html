@@ -18,6 +18,12 @@
     <section class="cards-section" id="cards-section">
       <h1 class="heading">actors</h1>
       <div class="cards-container" id="cards-container">
+        <div class="error-message-container">
+                <h2 class="heading error-heading">Oops! Something went wrong!</h2>
+                <p class="error-message-content">Sorry, this page is temporarily unavailable.</p>
+                <p class="error-message-content">Please try again later!</p>
+                <p class="error-message-content">We'll fix this page soon.</p>
+        </div>
         <article class="card-article">
           <div class="photo-wrapper">
             <div class="initials-wrapper color-secondary">ta</div>
@@ -28,7 +34,7 @@
             />
           </div>
           <p class="actors-name">dwayne johnson</p>
-          <a class="fa-stack fa-sm" href="#">
+          <a class="fa-stack fa-sm" id="social-link" href="#">
             <span class="fa fa-circle fa-stack-2x"></span>
             <span
               class="color-secondary fa fa-facebook-f fa-stack-1x fa-xs"
@@ -48,6 +54,15 @@
           </a>
         </article>
       </div>
+      <div class="chosen-container">
+            <h2 class="heading">you choosed</h2>
+            <ul class="chosen-list">
+                <li class="actors-name">tom anderson</li>
+                <li class="actors-name">tom anderson</li>
+                <li class="actors-name">tom anderson</li>
+                <li class="actors-name">tom anderson</li>
+            </ul>
+       </div>
     </section>
   </body>
 </html>
