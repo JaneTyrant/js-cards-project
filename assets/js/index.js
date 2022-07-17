@@ -3,6 +3,11 @@
 const cardsSection = document.getElementById("cards-section");
 const cardsContainer = document.getElementById("cards-container");
 
+const socialMap = new Map();
+socialMap.set('www.facebook.com', 'fa-facebook-f');
+socialMap.set('twitter.com', 'fa-twitter');
+socialMap.set('www.instagram.com', 'fa-instagram');
+
 fetch('./assets/js/data.json')
     .then((response) => response.json())
     .then((actors) => {
@@ -19,14 +24,18 @@ fetch('./assets/js/data.json')
 function createActorsCard(actor) {
     const { id, firstName, lastName, profilePicture, contacts } = actor;
     const actorName = firstName && lastName ? `${firstName} ${lastName}` : "Anonim";
-    const spanItemSocialLink = createElement('span', {classNames: ['color-secondary', 'fa', 'fa-facebook-f', 'fa-stack-1x', 'fa-xs']} );
-    const spanCircleSocialLink = createElement('span', {classNames: ['fa', 'fa-circle', 'fa-stack-2x']} );
-    const socialLink = createElement('a', {classNames: ['fa-stack', 'fa-sm'], attributes: {href: contacts}}, spanCircleSocialLink, spanItemSocialLink );
+    const socials = contacts.map((contact) => {
+      const hostName = new URL(contact).hostname;
+      const spanCircleSocialLink = createElement('span', {classNames: ['fa', 'fa-circle', 'fa-stack-2x']} );
+      const spanItemSocialLink = createElement('span', {classNames: ['color-secondary', 'fa', socialMap.get(hostName), 'fa-stack-1x', 'fa-xs']} );
+      const socialLink = createElement('a', {classNames: ['fa-stack', 'fa-sm'], attributes: {'href': contact}}, spanCircleSocialLink, spanItemSocialLink );
+      return socialLink;
+    })
     const actorsName = createElement('p', {classNames: ['actors-name']}, actorName );
     const cardPhoto = createElement('img', {classNames: ['card-photo'], attributes:{'src': profilePicture, "alt": actorName, 'data-id': id}, events:{error: handlePhotoError, "load": handlePhotoLoad}} );
     const initialsWrapper = createElement('div', {classNames: ['initials-wrapper', 'color-secondary'], name: [firstName, lastName]} );
     const photoWrapper = createElement('div', {classNames: ['photo-wrapper']}, initialsWrapper, cardPhoto );
-    const cardArticle = createElement('article', {classNames: ['card-article']}, photoWrapper, actorsName, socialLink );
+    const cardArticle = createElement('article', {classNames: ['card-article']}, photoWrapper, actorsName, ...socials );
     return cardArticle;
 }
 
@@ -53,7 +62,7 @@ function getInitials(array) {
 
 function handlePhotoError({ target }) {
     target.remove();
-  }
+}
 
 function handlePhotoLoad({ target }) {
     target.classList.add('background-color');
@@ -70,4 +79,4 @@ function stringToColour(string) {
       colour += ("00" + value.toString(16)).slice(-2);
     }
     return colour;
-  }
+}
